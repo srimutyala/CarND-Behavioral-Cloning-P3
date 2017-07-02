@@ -57,7 +57,7 @@ A different approach is then taken for data collection where the data set is sma
 
 I employed two simple pre-processing techniques on the data. First is using a lambda layer to noralize the data & next is to crop out portion of the image not useful to the training.
 
-####3. 
+####3. Model
 
 
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
