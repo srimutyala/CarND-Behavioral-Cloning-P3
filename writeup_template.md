@@ -48,35 +48,31 @@ The model.py file contains the code for training and saving the convolution neur
 
 ###Model Architecture and Training Strategy
 
-####1. Training Data
-It took a while to realize but the quality of the training data made a lot of difference in how well the model performed. Initial runs with the default data did not provide robust performance. Adding the input from the left abd right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording he car getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
-
-A different approach is then taken for data collection where the data set is small but contains mostly recovery information with some normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
-
-####2. Pre-procesing
+####1. Pre-procesing
 
 I employed two simple pre-processing techniques on the data. First is using a lambda layer to noralize the data & next is to crop out portion of the image not useful to the training.
 
-####3. Model
+####2. Model
 
+My model consists of series of convolution layers with RELU activation. The filter sizes and epths are as below:
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+1. 1 7x7 layer with a depth of 36
+2. 2 5x5 layers with depths of 48 and 64.
+3. 2 3x3 layers with depths of 80 each
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+This is followed by 3 fully connected layers also with RELU activation.
 
-####2. Attempts to reduce overfitting in the model
+####3. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+I did not use a dropout layer for this model as the dat set itself is very small and based on the performance, it did not warrant that. The model was trained multiple times (along with testing of the model) to see how the performance changes by selecting different data for training each time. The performance is not distinguishablly different.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+####4. Model parameter tuning
 
-####3. Model parameter tuning
+The model used an adam optimizer and mean square error as its loss function. There is a 'steering_correction' parameter that's set to 0.4. This determines how much positive/negative bias needed to be applied to the steering values for corresponding left/right images.
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+####5. Appropriate training data
 
-####4. Appropriate training data
-
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.
 
 For details about how I created the training data, see the next section. 
 
@@ -84,25 +80,21 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+It took a while to realize but the quality of the training data made a lot of difference in how well the model performed. Initial runs with the default data did not provide robust performance. Adding the input from the left abd right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording he car getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+A different approach is then taken for data collection where the data set is small but contains mostly recovery information with some normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+My initial thought was to implement the same network I used for the second project (traffis sign classifier). After running into a few roadblocks implementing inception layers, I questioned the wisdom of such a complex network. So, I started with a few convolution layers to test the performance. After surprisngly decent performance with small epoch runs, I decided to just tweak this simple model than implement the model based on the inception and its long training run-times.
 
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+I ran into a few scenarios where the vehcile was not providing enough positive/negative steering to keep it on the track. Careful re-do of the training data capture fixed many of those deviants.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 ####2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture consists of 5 convolution neural networks & 4 fully connected networks with the following layers and layer sizes
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+<INSERT MODEL DETAILS>
 
 ![alt text][image1]
 
