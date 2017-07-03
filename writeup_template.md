@@ -20,6 +20,7 @@ The goals / steps of this project are the following:
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
+[image8]: center_2017_07_02_09_15_26_468.jpg "Training Image"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -96,13 +97,22 @@ The final model architecture consists of 5 convolution neural networks & 4 fully
 
 <INSERT MODEL DETAILS>
 
-![alt text][image1]
+|Conv Net| 7x7 with depth of 36
+|Conv Net| 5x5 with depth of 48
+|Conv Net| 5x5 with depth of 64
+|Conv Net| 3x3 with depth of 80
+|Conv Net| 3x3 with depth of 80
+|Fully Connected| |
+|Fully Connected| |
+|Fully Connected| |
+|Fully Connected| |
+
 
 ####3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded one lap on track one recovering from the left and right side to center so the vehicle would learn to get back on the road in case it goes off it. I also flipped the entire data set (images) with corresponding negative steering values to avoid any bias (left heavy or right heavy) in the training data center.
 
-![alt text][image2]
+![alt text][image8]
 
 
 After the collection process, I had X number of data points. I then preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
