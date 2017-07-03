@@ -97,27 +97,15 @@ The final model architecture consists of 5 convolution neural networks & 4 fully
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution w/RELU     	| 1x1 stride, valid padding, outputs 28x28x6 	|
-| Convolution w/RELU					|		1x1 stride, valid padding, outputs 24x24x48										|
-| Inception w/ Max Pooling		      	| outputs 12x12x96 				|
-| Convolution					|		1x1 stride, valid padding, outputs 12x12x48									|
-| Flatten		| output 6912        									|
-| Fully Connected w/ RELU & Dropout				| outputs x120        									|
-|	Fully Connected						|outputs x43												|
-
-
-| Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
 |Conv Net| 7x7 with depth of 36|
 |Conv Net| 5x5 with depth of 48|
 |Conv Net| 5x5 with depth of 64|
 |Conv Net| 3x3 with depth of 80|
 |Conv Net| 3x3 with depth of 80|
-|Fully Connected| |
-|Fully Connected| |
-|Fully Connected| |
-|Fully Connected| |
+|Fully Connected| Output 120 |
+|Fully Connected| Output 64 |
+|Fully Connected| Output 20|
+|Fully Connected| Output 1 |
 
 
 ####3. Creation of the Training Set & Training Process
