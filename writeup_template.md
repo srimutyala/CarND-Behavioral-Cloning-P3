@@ -51,7 +51,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. Pre-procesing
 
-I employed two simple pre-processing techniques on the data. First is using a lambda layer to noralize the data & next is to crop out portion of the image not useful to the training.
+I employed two simple pre-processing techniques on the data. First is using a lambda layer to normalize the data & next is to crop out portion of the image not useful to the training.
 
 ####2. Model
 
@@ -81,7 +81,7 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-It took a while to realize but the quality of the training data made a lot of difference in how well the model performed. Initial runs with the default data did not provide robust performance. Adding the input from the left abd right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording he car getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
+It took a while to realize but the quality of the training data made a lot of difference in how well the model performed. Initial runs with the default data did not provide robust performance. Adding the input from the left and right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording the vehicle getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
 
 A different approach is then taken for data collection where the data set is small but contains mostly recovery information with some normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
 
