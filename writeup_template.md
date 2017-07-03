@@ -115,7 +115,7 @@ To capture good driving behavior, I first recorded one lap on track one recoveri
 ![alt text][image8]
 
 
-After the collection process, I had X number of data points. I then preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
+After the collection process, I had 8796 number of data points, of which 7036 were used as training samples.. I then preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
