@@ -64,7 +64,7 @@ This is followed by 3 fully connected layers also with RELU activation.
 
 ####3. Attempts to reduce overfitting in the model
 
-I did not use a dropout layer for this model as the dat set itself is very small and based on the performance, it did not warrant that. The model was trained multiple times (along with testing of the model) to see how the performance changes by selecting different data for training each time. The performance is not distinguishablly different.
+I did not use a dropout layer for this model as the data set itself is very small and based on the performance, it did not warrant that. The model was trained multiple times (along with testing of the model) to see how the performance changes by selecting different data for training each time. The performance is not distinguishably different.
 
 ####4. Model parameter tuning
 
@@ -84,9 +84,9 @@ It took a while to realize but the quality of the training data made a lot of di
 
 A different approach is then taken for data collection where the data set is small but contains mostly recovery information with some normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
 
-My initial thought was to implement the same network I used for the second project (traffis sign classifier). After running into a few roadblocks implementing inception layers, I questioned the wisdom of such a complex network. So, I started with a few convolution layers to test the performance. After surprisngly decent performance with small epoch runs, I decided to just tweak this simple model than implement the model based on the inception and its long training run-times.
+My initial thought was to implement the same network I used for the second project (traffic sign classifier). After running into a few roadblocks implementing inception layers, I questioned the wisdom of such a complex network. So, I started with a few convolution layers to test the performance. After surprisngly decent performance with small epoch runs, I decided to just tweak this simple model than implement the model based on the inception and its long training run-times.
 
-I ran into a few scenarios where the vehcile was not providing enough positive/negative steering to keep it on the track. Careful re-do of the training data capture fixed many of those deviants.
+I ran into a few scenarios where the vehicle was not providing enough positive/negative steering to keep it on the track. Careful recapturing of the training data fixed many of those deviantions.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -100,28 +100,14 @@ The final model architecture consists of 5 convolution neural networks & 4 fully
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I first recorded one lap on track one recovering from the left and right side to center so the vehicle would learn to get back on the road in case it goes off it. I also flipped the entire data set (images) with corresponding negative steering values to avoid any bias (left heavy or right heavy) in the training data center.
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had X number of data points. I then preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used a small number of epochs as the training error and validtaion error started very low and stayed low even for small number of epochs. In this case, I just ran the model for 2 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
