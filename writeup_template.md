@@ -55,7 +55,7 @@ I employed two simple pre-processing techniques on the data. First is using a la
 
 ####2. Model
 
-My model consists of series of convolution layers with RELU activation. The filter sizes and epths are as below:
+My model consists of series of convolution layers with RELU activation. The filter sizes and depths are as below:
 
 1. 1 7x7 layer with a depth of 36
 2. 2 5x5 layers with depths of 48 and 64.
@@ -81,13 +81,13 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-It took a while to realize but the quality of the training data made a lot of difference in how well the model performed. Initial runs with the default data did not provide robust performance. Adding the input from the left and right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording the vehicle getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
+It took a while to realize but the quality of the training data made a lot more of difference in how well the model performed than I initially assumed. Initial runs with the default data did not provide robust performance. Adding the input from the left and right cameras as well as a parameter for controlling the amount of steering did help a little but still was lacking. I collected some training data driving in the simulator. I also added recovery data by recording the vehicle getting back on the road when it went off it (not recording when it was going off the road but just the recovery). This data set is large & took a while to train but also suffered from driving off the road at certain points. 
 
-A different approach is then taken for data collection where the data set is small but contains mostly recovery information with some normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
+A different approach is then taken for data collection where the data set is very small but mostly contains recovery information with minimal normal driving. Surprisingly, this worked better for a few variations of the final model I put together.
 
-My initial thought was to implement the same network I used for the second project (traffic sign classifier). After running into a few roadblocks implementing inception layers, I questioned the wisdom of such a complex network. So, I started with a few convolution layers to test the performance. After surprisngly decent performance with small epoch runs, I decided to just tweak this simple model than implement the model based on the inception and its long training run-times.
+My initial thought was to implement the same network I used for the second project (traffic sign classifier). After running into a few roadblocks implementing inception layers, I questioned the wisdom of such a complex network. So, I started with a few convolution layers to test the performance. After surprisngly good performance with small epoch runs, I decided to just tweak this simple model than implement the model based on the inception and its long training run-times.
 
-I ran into a few scenarios where the vehicle was not providing enough positive/negative steering to keep it on the track. Careful recapturing of the training data fixed many of those deviantions.
+I ran into a few scenarios where the vehicle was not providing enough positive/negative steering to keep it on the track. Careful recapture of the training data fixed many of those deviations.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -110,14 +110,14 @@ The final model architecture consists of 5 convolution neural networks & 4 fully
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded one lap on track one recovering from the left and right side to center so the vehicle would learn to get back on the road in case it goes off it. I also flipped the entire data set (images) with corresponding negative steering values to avoid any bias (left heavy or right heavy) in the training data center.
+To capture good driving behavior, I recorded one lap on track one recovering from the left and right side to center so the vehicle would learn to get back on the road in case it goes off it. I also flipped the entire data set (images) with corresponding negative steering values to avoid any bias (left heavy or right heavy) in the training data center.
 
 ![alt text][image8]
 
 
-After the collection process, I had 8796 number of data points, of which 7036 were used as training samples.. I then preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
+After the collection process, I had 8796 number of data points, of which 7036 were used as training samples. I preprocessed this data by normalizing it and cropping out a section of the images before feeding them to the model layers.
 
 
-I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+Finally, I randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used a small number of epochs as the training error and validtaion error started very low and stayed low even for small number of epochs. In this case, I just ran the model for 2 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used the remaining 80% data for training the model. The validation set helped determine whether the model was over or under fitting. I used a small number of epochs as the training error and validtaion error started very low and stayed low even for small number of epochs. In this case, I just ran the model for 2 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
