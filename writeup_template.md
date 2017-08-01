@@ -128,7 +128,7 @@ I used the remaining 80% data for training the model. The validation set helped 
 
 ####4. Track 2
 
-A similar approach was taken for track 2 where most of the data collected was just recovery data and not normal driving. The number of data points (including center, left, right images & their flipped counterparts) are 11,874 of which 20% are set aside for validation. The same model performed well for track 2 after training with this data set.
+A similar approach was taken for track 2 where most of the data collected was just recovery data and not normal driving. The number of data points (including center, left, right images & their flipped counterparts) are 11,874 of which 20% are set aside for validation. The same model performed ok (with room for improvement) for track 2 after training with this data set.
 
 ####5. Improvements
 I trainined the model on both track 1 & 2's training data together in an attempt to have a single training data set that can train for both tracks. Unfortunately, the vehicle went off the road multiple times using this minimal data set. I believe with more normal driving data and a few changes in the model (if necessary), this cna be achievied.
