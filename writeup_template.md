@@ -77,6 +77,9 @@ Training data was chosen to keep the vehicle driving on the road. I used a combi
 
 For details about how I created the training data, see the next section. 
 
+####6. Use of Generators
+The data collected can be very large and take up a lot of memory. To avoid this, I employed the use of generators that run in parallel to the model & training and pass data in batches of size that's set at runtime.
+
 ###Model Architecture and Training Strategy
 
 ####1. Solution Design Approach
